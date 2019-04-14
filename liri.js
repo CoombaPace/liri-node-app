@@ -87,20 +87,36 @@ function spotifySong() {
                 console.error('ERROR: ' + err);
             });
     } else {
-        spotify.search({ type: 'track', query: song, limit: 1 }, function (err, data) {
+        spotify.search({ type: 'track', query: song }, function(err, data) {
             if (err) {
-                return console.log('ERROR: ' + err);
+              return console.log('Error occurred: ' + err);
             }
-                console.log("===================================");
-                console.log("SONG INFO: ");
-                console.log(data.name + " by " + data.artists[0].name + ", off the album, '" + data.album.name + "'.");
-                console.log("Check it out here: " + data.preview_url);
-                console.log("===================================");
+            var songInfo = data.tracks.items;
+            for (var i = 0; i < 5; i++) {
+                
+                    var spotifyResults =
+                    "------------------------------ " + (i + 1) + " ------------------------------"
+                    + "\r\n" + songInfo[i].name + " by " + songInfo[i].artists[0].name  +
+                    " off the album, " + "'" + songInfo[i].album.name + "'" + "\r\n" + 
+                    "\r\n" + "Check it out here: " + "\r\n" + 
+                    songInfo[i].preview_url + "\r\n";
+
+                    console.log(spotifyResults);
+ 
+                }        
         });
+        
     }
 
 };
 
 function doIt() {
-
-}
+		fs.readFile("random.txt", "utf8", function(error, data){
+			if (!error) {
+				doItResults = data.split(",");
+				spotifySong(doItResults[0], doItResults[1]);
+			} else {
+				console.log("ERROR!" + error);
+			}
+		});
+    };
