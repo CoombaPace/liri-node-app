@@ -16,7 +16,7 @@ node liri.js movie-this '<movie name here>'
 2. concert-this
 Searches Bands-in-Town API for Concerts
 node liri.js concert-this <artist/band name here>
-![move-this "the americans"](movie_this.gif)
+![move-this "the americans"](concert_this.gif)
 
 3. spotify-this-song
 Search Spotify for song titles.
