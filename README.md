@@ -11,7 +11,7 @@ LIRI is a command line node app that takes in the following parameters:
 1. movie-this
 Searches OMDB API for movie/show title.
 node liri.js movie-this '<movie name here>'
-![move-this "the americans"](movie_this (1).gif)
+![move-this "the americans"](movie_this.gif)
 
 2. concert-this
 Searches Bands-in-Town API for Concerts
