@@ -37,18 +37,24 @@ const endpoint = omdbUrl + input + apikey;
 
 // Make a request for a user with a given ID
 axios.get(endpoint).then(function (response) {
+    var movieInfo = [
+    "===================================",
+    "TITLE: " + response.data.Title,
+    "RELEASE DATE: " + response.data.Year,
+    "RATINGS: " + response.data.Ratings[0].Value,
+    "RT RATING: " + response.data.Metascore,
+    "ORIGIN: " + response.data.Country,
+    "LANGUAGE: " +response.data.Language,
+    "PLOT: " + response.data.Plot,
+    "ACTORS: " + response.data.Actors,
+    "===================================="
+].join("\n\n");
+    
+fs.appendFile("log.tx", movieInfo, function(err) {
+        if (err) throw err;
+    })
 
-    console.log("===================================");
-    console.log("TITLE: " + response.data.Title);
-    console.log("RELEASE DATE: " + response.data.Year);
-    console.log("RATINGS: " + response.data.Ratings[0].Value);
-    console.log("RT RATING: " + response.data.Metascore);
-    console.log("ORIGIN: " + response.data.Country);
-    console.log("LANGUAGE: " +response.data.Language);
-    console.log("PLOT: " + response.data.Plot);
-    console.log("ACTORS: " + response.data.Actors);
-    console.log("====================================");
-
+    console.log(movieInfo);
 });
 
 }
@@ -61,12 +67,22 @@ const endpoint = "https://rest.bandsintown.com/artists/" + bandSearch + "/events
 
 axios.get(endpoint).then(
     function (res) {
-        console.log("===================================");
-        console.log("EVENT INFO FOR: " + bandSearch)
-        console.log("VENUE: " + res.data[0].venue.name);
-        console.log("CITY: " + res.data[0].venue.city);
-        console.log("ON: " + moment(res.data[0].datetime).format("MM-DD-YYYY"));
-        console.log("===================================");
+        var concertInfo = 
+        [
+        "===================================",
+        "NEXT " + bandSearch + " SHOW:",
+        "VENUE: " + res.data[0].venue.name,
+        "CITY: " + res.data[0].venue.city,
+        "ON: " + moment(res.data[0].datetime).format("MM-DD-YYYY"),
+        "==================================="
+    ].join("\n\n");
+    
+    fs.appendFile("log.tx", concertInfo, function(err) {
+            if (err) throw err;
+        })
+
+        console.log(concertInfo);
+        
     });
 };
 
@@ -103,6 +119,9 @@ function spotifySong() {
 
                     console.log(spotifyResults);
  
+                    fs.appendFile("log.tx", spotifyResults, function(err) {
+                        if (err) throw err;
+                    })
                 }        
         });
         
