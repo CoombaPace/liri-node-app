@@ -4,26 +4,29 @@ Search OMDB, Spotify, and Bands in Town APIs.
 Built on NodeJS.
 
 # What Does LIRI do?
-SIRI = Speech Interpretation and Recognition Interface 
 LIRI = Language Interpretation and Recognition Interface.
 LIRI is a command line node app that takes in the following parameters: 
 
 1. **movie-this**
+
 Searches OMDB API for movie/show title.
 node liri.js movie-this '<movie name here>'
 ![move-this "the americans"](movieThis.gif)
 
 1. **concert-this**
+
 Searches Bands-in-Town API for Concerts
 node liri.js concert-this <artist/band name here>
 ![move-this "the americans"](concert_this.gif)
 
 1. **spotify-this-song**
+
 Search Spotify for song titles.
 node liri.js spotify-this-song '<song name here>'
 ![move-this "the americans"](spotify_this.gif)
 
 1. **do-what-it-says**
+
 Runs command found in random.txt file. Default is searching Spotify for"
 Backstreet Boys' hit song, "I want it that way"
 node liri.js do-what-it-says
